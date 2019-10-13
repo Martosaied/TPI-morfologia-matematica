@@ -7,7 +7,7 @@
 
 #include "definiciones.h"
 
-bool esBinaria(const imagen &A);
-bool esMatriz(const imagen &A);
+bool esMatrizBinaria(const imagen &A);
+bool estanConectados(const imagen &A, const pixel &p, const pixel &q, const int &k);
 
 #endif //SOLUCION_AUXILIARES_H

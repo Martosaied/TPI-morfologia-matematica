@@ -6,7 +6,7 @@
 
 bool esImagenValida(const imagen& img) {
 	bool resp = false;
-	if(img.size() > 0 && !img[0].size() > 0 && esMatriz(img) && esBinaria(img)) {
+	if(!img.empty() && !img[0].empty() && esMatrizBinaria(img)) {
 		resp = true;
 	}
     return resp;
