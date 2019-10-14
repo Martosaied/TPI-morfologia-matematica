@@ -1,12 +1,11 @@
 //
 //
-#include <cstdlib>
 #include "definiciones.h"
 #include "auxiliares.h"
-#include <algorithm>
 
 using namespace std;
 
+// EJERCICIO 1
 bool esMatrizBinaria(const imagen& img) {
 	bool resp = true;
 	for (int i = 0; i < img.size(); i++) {
@@ -24,7 +23,9 @@ bool esMatrizBinaria(const imagen& img) {
 
 	return resp;
 }
+//END EJERCICIO 1
 
+// EJERCICIO 2
 bool estanConectados(const imagen &A, const pixel &p, const pixel &q, const int &k) {
     if(p == q) {
         return true;
@@ -99,3 +100,4 @@ sqPixel deleteDuplicates(const sqPixel &secP) {
     }
     return newSecP;
 }
+// END EJERCICIO 2
