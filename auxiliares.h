@@ -9,5 +9,8 @@
 
 bool esMatrizBinaria(const imagen &A);
 bool estanConectados(const imagen &A, const pixel &p, const pixel &q, const int &k);
+sqPixel obtenerPixelesAdy(const imagen &A, const pixel &p, const int &k);
+bool enRango(const pixel &p, const imagen &A, int i, int j);
+sqPixel deleteDuplicates(const sqPixel &secP);
 
 #endif //SOLUCION_AUXILIARES_H

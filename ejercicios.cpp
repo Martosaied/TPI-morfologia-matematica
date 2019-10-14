@@ -15,9 +15,7 @@ bool esImagenValida(const imagen& img) {
 // Ejercicio 2
 
 bool sonPixelesConectados(const imagen& img, const pixel& p, const pixel& q, int k) {
-	bool resp = false;
-	// TODO --> cuerpo de funcion
-    return resp;
+    return estanConectados(img, p, q, k);
 }
 
 // Ejercicio 3
