@@ -13,4 +13,9 @@ sqPixel obtenerPixelesAdy(const imagen &A, const pixel &p, const int &k);
 bool enRango(const pixel &p, const imagen &A, int i, int j);
 sqPixel deleteDuplicates(const sqPixel &secP);
 
+void dilatacion(imagen &A, const imagen &EE);
+void erosion(imagen &A, const imagen &EE);
+bool elementoEstructuranteEstaEnRegion(int radio, imagen A, pixel posicionActualEE);
+bool elementoEstructuranteTocaRegion(int radio, imagen A, pixel posicionActualEE);
+
 #endif //SOLUCION_AUXILIARES_H

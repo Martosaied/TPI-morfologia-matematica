@@ -37,7 +37,8 @@ sqPixel calcularContorno(const imagen &A, int k){
 // Ejercicio 5
 
 void cerrarForma(imagen &A, const imagen &B){
-	// TODO --> cuerpo de funcion
+    dilatacion(A,B);
+    erosion(A,B);
 	return;
 }
 
@@ -45,7 +46,7 @@ void cerrarForma(imagen &A, const imagen &B){
 
 int obtenerRegionConectada(imagen &A, const pixel &semilla) {
 	int ite = 0;
-	// TODO --> cuerpo de funcion
+
 	return ite;
 }
 

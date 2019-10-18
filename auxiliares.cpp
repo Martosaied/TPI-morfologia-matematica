@@ -101,3 +101,61 @@ sqPixel deleteDuplicates(const sqPixel &secP) {
     return newSecP;
 }
 // END EJERCICIO 2
+
+
+// EJERCICIO 5
+void erosion(imagen &A, const imagen &EE) {
+    int rangoEE = ((int)EE.size() - 1) / 2;
+    for (int i = 0; i < A.size(); ++i) {
+        for (int j = 0; j < A[0].size(); ++j) {
+            pixel p = {i,j};
+            if(elementoEstructuranteEstaEnRegion(rangoEE, A, p)) {
+                A[i][j] = 1;
+            }
+        }
+    }
+}
+
+void dilatacion(imagen &A, const imagen &EE) {
+    int rangoEE = ((int)EE.size() - 1) / 2;
+    for (int i = 0; i < A.size(); ++i) {
+        for (int j = 0; j < A[0].size(); ++j) {
+            pixel p = {i,j};
+            if(elementoEstructuranteTocaRegion(rangoEE, A,p)) {
+                A[i][j] = 1;
+            }
+        }
+    }
+}
+
+bool elementoEstructuranteEstaEnRegion(int radio, imagen A, pixel posicionActualEE) {
+    bool response = true;
+    int x = posicionActualEE[0];
+    int y = posicionActualEE[1];
+    for (int i = -radio; i < radio; ++i)
+        for (int j = -radio; j < radio; ++j) {
+            if(A[x+i][y+j] != 1) {
+                response = false;
+            }
+        }
+    return response;
+}
+
+bool elementoEstructuranteTocaRegion(int radio, imagen A, pixel posicionActualEE) {
+    bool response = false;
+    int x = posicionActualEE[0];
+    int y = posicionActualEE[1];
+    for (int i = -radio; i < radio; ++i)
+        for (int j = -radio; j < radio; ++j) {
+            if(A[x+i][y+j] == 1) {
+                response = true;
+            }
+        }
+    return response;
+}
+
+// END EJERCICIO 5
+
+// EJERCICIO 6
+
+// END EJERCICIO 6
