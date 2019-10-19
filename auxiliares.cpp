@@ -156,10 +156,6 @@ bool elementoEstructuranteTocaRegion(int radio, imagen A, pixel posicionActualEE
 
 // END EJERCICIO 5
 
-// EJERCICIO 6
-
-// END EJERCICIO 6
-
 vector<sqPixel> deleteDuplicatesRegions(const vector<sqPixel> &secP) {
     vector<sqPixel> newSecP = {};
     for (const sqPixel& sqP : secP) {
@@ -206,3 +202,19 @@ float areaTotal(const imagen& A) {
 
     return areaTotal;
 }
+
+imagen interseccion(imagen A, imagen B) {
+    imagen response = A;
+    for (int i = 0; i < A.size(); ++i) {
+        for (int j = 0; j < A[0].size(); ++j) {
+            if(A[i][j] == 1 && B[i][j] == 1) {
+                response[i][j] = 1;
+            } else {
+                response[i][j] = 0;
+            }
+        }
+    }
+
+    return response;
+}
+// END EJERCICIO 6

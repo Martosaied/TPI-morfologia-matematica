@@ -22,5 +22,8 @@ bool elementoEstructuranteTocaRegion(int radio, imagen A, pixel posicionActualEE
 float areaTotal(const imagen &A);
 bool igualdadRegiones(const sqPixel& sqP, const sqPixel& sqQ);
 
+imagen interseccion(imagen A, imagen B);
+
+
 
 #endif //SOLUCION_AUXILIARES_H
