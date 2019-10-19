@@ -26,11 +26,7 @@ bool esMatrizBinaria(const imagen& img) {
 //END EJERCICIO 1
 
 // EJERCICIO 2
-bool estanConectados(const imagen &A, const pixel &p, const pixel &q, const int &k) {
-    if(p == q) {
-        return true;
-    }
-
+sqPixel obtenerRegionDelPixel(const imagen &A, const pixel &p, const int &k) {
     sqPixel pixelesAdy = {p};
 
     int previousSize = 0;
@@ -45,16 +41,10 @@ bool estanConectados(const imagen &A, const pixel &p, const pixel &q, const int 
         pixelesAdy = deleteDuplicates(pixelesAdy);
     }
 
-    for (pixel r : pixelesAdy) {
-        if(r == q) {
-            return true;
-        }
-    }
-
-    return false;
+    return pixelesAdy;
 }
 
-sqPixel obtenerPixelesAdy(const imagen &A, const pixel &p, const int &k) {
+vector<vector<int>> obtenerPixelesAdy(const imagen &A, const pixel &p, const int &k) {
     sqPixel ady = {};
     if(k == 4) {
         for (int i = -1; i <= 1; ++i) {
@@ -104,50 +94,60 @@ sqPixel deleteDuplicates(const sqPixel &secP) {
 
 
 // EJERCICIO 5
-void erosion(imagen &A, const imagen &EE) {
+imagen erosion(const imagen &A, const imagen &EE) {
     int rangoEE = ((int)EE.size() - 1) / 2;
+    imagen response = A;
     for (int i = 0; i < A.size(); ++i) {
         for (int j = 0; j < A[0].size(); ++j) {
             pixel p = {i,j};
-            if(elementoEstructuranteEstaEnRegion(rangoEE, A, p)) {
-                A[i][j] = 1;
+            if(elementoEstructuranteEstaEnRegion(rangoEE, A, p, EE)) {
+                response[i][j] = 1;
+            } else {
+                response[i][j] = 0;
             }
         }
     }
+
+    return response;
 }
 
-void dilatacion(imagen &A, const imagen &EE) {
+imagen dilatacion(const imagen &A, const imagen &EE) {
     int rangoEE = ((int)EE.size() - 1) / 2;
+    imagen response = A;
     for (int i = 0; i < A.size(); ++i) {
         for (int j = 0; j < A[0].size(); ++j) {
             pixel p = {i,j};
-            if(elementoEstructuranteTocaRegion(rangoEE, A,p)) {
-                A[i][j] = 1;
+            if(elementoEstructuranteTocaRegion(rangoEE, A,p, EE)) {
+                response[i][j] = 1;
+            } else {
+                response[i][j] = 0;
             }
         }
     }
+
+    return response;
 }
 
-bool elementoEstructuranteEstaEnRegion(int radio, imagen A, pixel posicionActualEE) {
+bool elementoEstructuranteEstaEnRegion(int radio, imagen A, pixel posicionActualEE, imagen EE) {
     bool response = true;
     int x = posicionActualEE[0];
     int y = posicionActualEE[1];
-    for (int i = -radio; i < radio; ++i)
-        for (int j = -radio; j < radio; ++j) {
-            if(A[x+i][y+j] != 1) {
+    for (int i = -radio; i <= radio; ++i)
+        for (int j = -radio; j <= radio; ++j) {
+            if(enRango(posicionActualEE,A,i,j) && enRango({i,j},A,0,0) && A[x+i][y+j] != 1 && EE[i][j] == 1) {
                 response = false;
             }
         }
     return response;
 }
 
-bool elementoEstructuranteTocaRegion(int radio, imagen A, pixel posicionActualEE) {
+bool elementoEstructuranteTocaRegion(int radio, imagen A, pixel posicionActualEE, imagen EE) {
     bool response = false;
     int x = posicionActualEE[0];
     int y = posicionActualEE[1];
-    for (int i = -radio; i < radio; ++i)
-        for (int j = -radio; j < radio; ++j) {
-            if(A[x+i][y+j] == 1) {
+    for (int i = -radio; i <= radio; ++i)
+        for (int j = -radio; j <= radio; ++j) {
+            if(enRango(posicionActualEE,A,i,j) && enRango({i,j},A,0,0) && A[x+i][y+j] == 1 && EE[i][j] == 1) {
                 response = true;
             }
         }
@@ -159,3 +159,50 @@ bool elementoEstructuranteTocaRegion(int radio, imagen A, pixel posicionActualEE
 // EJERCICIO 6
 
 // END EJERCICIO 6
+
+vector<sqPixel> deleteDuplicatesRegions(const vector<sqPixel> &secP) {
+    vector<sqPixel> newSecP = {};
+    for (const sqPixel& sqP : secP) {
+        bool add = true;
+        for (const sqPixel& sqQ : newSecP) {
+            if(igualdadRegiones(sqP, sqQ)) {
+                add = false;
+            }
+        }
+
+        if(add) {
+            newSecP.push_back(sqP);
+        }
+    }
+    return newSecP;
+}
+
+bool igualdadRegiones(const sqPixel& sqP, const sqPixel& sqQ) {
+    bool resp = true;
+    for (const pixel& p : sqP) {
+        bool estaEnRegion = false;
+        for (const pixel& q : sqQ) {
+            if(p == q) {
+                estaEnRegion = true;
+            }
+        }
+
+        if(!estaEnRegion) {
+            resp = false;
+        }
+    }
+    return resp;
+}
+
+float areaTotal(const imagen& A) {
+    float areaTotal = 0;
+    for (int i = 0; i < A.size(); ++i) {
+        for (int j = 0; j < A[0].size(); ++j) {
+            if(A[i][j] == 1) {
+                areaTotal++;
+            }
+        }
+    }
+
+    return areaTotal;
+}

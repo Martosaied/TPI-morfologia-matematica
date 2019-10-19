@@ -15,15 +15,37 @@ bool esImagenValida(const imagen& img) {
 // Ejercicio 2
 
 bool sonPixelesConectados(const imagen& img, const pixel& p, const pixel& q, int k) {
-    return estanConectados(img, p, q, k);
+    if(q == p) {
+        return true;
+    }
+
+    sqPixel regionDelPixel = obtenerRegionDelPixel(img, p, k);
+
+    for (pixel r : regionDelPixel) {
+        if(r == q) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 // Ejercicio 3
 
-float devolverPromedioAreas(const imagen &A, int k){
-	float prom = -1.0;
-	// TODO --> cuerpo de funcion
-    return prom;
+float devolverPromedioAreas(const imagen &A, int k) {
+    vector<sqPixel> regiones = {};
+	for (int i = 0; i < A.size(); ++i) {
+        for (int j = 0; j < A[0].size(); ++j) {
+            if(A[i][j] == 1) {
+                sqPixel region = obtenerRegionDelPixel(A, {i, j}, k);
+                regiones.push_back(region);
+            }
+        }
+    }
+	regiones = deleteDuplicatesRegions(regiones);
+	float area = areaTotal(A);
+
+    return area != 0 ? area/regiones.size() : 0;
 }
 
 // Ejercicio 4
@@ -33,12 +55,13 @@ sqPixel calcularContorno(const imagen &A, int k){
 	// TODO --> cuerpo de funcion
     return edges;
 }
-
+1
 // Ejercicio 5
-
+//TODO: NO funciona bien
 void cerrarForma(imagen &A, const imagen &B){
-    dilatacion(A,B);
-    erosion(A,B);
+    imagen dilatada = dilatacion(A,B);
+    imagen terminada = erosion(dilatada,B);
+    A = terminada;
 	return;
 }
 
