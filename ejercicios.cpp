@@ -55,7 +55,7 @@ sqPixel calcularContorno(const imagen &A, int k){
 	// TODO --> cuerpo de funcion
     return edges;
 }
-1
+
 // Ejercicio 5
 //TODO: NO funciona bien
 void cerrarForma(imagen &A, const imagen &B){

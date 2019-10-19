@@ -117,7 +117,7 @@ imagen dilatacion(const imagen &A, const imagen &EE) {
     for (int i = 0; i < A.size(); ++i) {
         for (int j = 0; j < A[0].size(); ++j) {
             pixel p = {i,j};
-            if(elementoEstructuranteTocaRegion(rangoEE, A,p, EE)) {
+            if(elementoEstructuranteTocaRegion(rangoEE, A, p, EE)) {
                 response[i][j] = 1;
             } else {
                 response[i][j] = 0;
@@ -134,7 +134,7 @@ bool elementoEstructuranteEstaEnRegion(int radio, imagen A, pixel posicionActual
     int y = posicionActualEE[1];
     for (int i = -radio; i <= radio; ++i)
         for (int j = -radio; j <= radio; ++j) {
-            if(enRango(posicionActualEE,A,i,j) && enRango({i,j},A,0,0) && A[x+i][y+j] != 1 && EE[i][j] == 1) {
+            if(enRango(posicionActualEE,A,i,j) && enRango({i+radio,j+radio},A,0,0) && A[x+i][y+j] != 1 && EE[i+radio][j+radio] == 1) {
                 response = false;
             }
         }
@@ -147,7 +147,7 @@ bool elementoEstructuranteTocaRegion(int radio, imagen A, pixel posicionActualEE
     int y = posicionActualEE[1];
     for (int i = -radio; i <= radio; ++i)
         for (int j = -radio; j <= radio; ++j) {
-            if(enRango(posicionActualEE,A,i,j) && enRango({i,j},A,0,0) && A[x+i][y+j] == 1 && EE[i][j] == 1) {
+            if(enRango(posicionActualEE,A,i,j) && enRango({i+radio,j+radio},A,0,0) && A[x+i][y+j] == 1 && EE[i+radio][j+radio] == 1) {
                 response = true;
             }
         }
