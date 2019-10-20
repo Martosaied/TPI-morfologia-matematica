@@ -173,6 +173,22 @@ vector<sqPixel> deleteDuplicatesRegions(const vector<sqPixel> &secP) {
     return newSecP;
 }
 
+vector<imagen> deleteDuplicatesImages(vector<imagen> secImagenes) {
+    vector<imagen> sinDuplicados = {};
+    for (const imagen& A : secImagenes) {
+        bool add = true;
+        for (const imagen& B : sinDuplicados) {
+            if(igualdadImagenes(A,B)) {
+                add = false;
+            }
+        }
+        if(add) {
+            sinDuplicados.push_back(A);
+        }
+    }
+
+    return sinDuplicados;
+}
 bool igualdadRegiones(const sqPixel& sqP, const sqPixel& sqQ) {
     bool resp = true;
     for (const pixel& p : sqP) {
@@ -232,20 +248,21 @@ imagen interseccion(imagen A, imagen B) {
 }
 
 imagen generarImagen(pixel semilla, imagen A) {
-    imagen imagenVacia = {
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    };
+    imagen imagenVacia = A;
+    for (int i = 0; i < imagenVacia.size(); ++i) {
+        for (int j = 0; j < imagenVacia[0].size(); ++j) {
+            imagenVacia[i][j] = 0;
+        }
+    }
     imagenVacia[semilla[0]][semilla[1]] = 1;
 
     return imagenVacia;
+}
+
+bool proximaIteIgual(imagen B, imagen A) {
+    imagen dilatada = dilatacion(B, {{1,1,1},{1,1,1},{1,1,1}});
+    imagen intersecada = interseccion(dilatada, A);
+
+    return igualdadImagenes(B, intersecada);
 }
 // END EJERCICIO 6

@@ -57,7 +57,6 @@ sqPixel calcularContorno(const imagen &A, int k){
 }
 
 // Ejercicio 5
-//TODO: NO funciona bien
 void cerrarForma(imagen &A, const imagen &B){
     imagen dilatada = dilatacion(A,B);
     imagen terminada = erosion(dilatada,B);
@@ -68,32 +67,20 @@ void cerrarForma(imagen &A, const imagen &B){
 // Ejercicio 6
 
 int obtenerRegionConectada(imagen &A, const pixel &semilla) {
-	int ite = 0;
 	vector<imagen> secImagenes = {};
 	imagen imagenSemilla = generarImagen(semilla, A);
     secImagenes.push_back(imagenSemilla);
-    secImagenes.push_back(imagenSemilla);
 	int i = 0;
-	while (i == 0 || !igualdadImagenes(secImagenes[i], secImagenes[i+1])) {
-	    imagen dilatada = dilatacion(secImagenes[i], {{1,1,1},{1,1,1},{1,1,1}});
-	    imagen intersecada = interseccion(dilatada, A);
-	    secImagenes.push_back(intersecada);
-	    i++;
-	}
+	while (!proximaIteIgual(secImagenes[i], A)) {
+        imagen dilatada = dilatacion(secImagenes[i], {{1,1,1},{1,1,1},{1,1,1}});
+        imagen intersecada = interseccion(dilatada, A);
+        secImagenes.push_back(intersecada);
+        i++;
+    }
 
-	A = secImagenes[i-1];
-	return i-2;
-        /*
-         * psuedocodigo
-         * Primero tomamos la imagen y dilato solo en el punto de la semilla
-         * Luego inteserco la imagen resultante con la imagen A de entrada
-         *
-         * repito a traves de un ciclo hasta que la ultima iteracion sea igual a la hipotetica siguiente
-         * en cada ciclo guardo en una posicion del array el resultado de dicha iteracion
-         *
-         * luego por ultimo devuelvo el largo de la secuencia e igualo mi inout A a la ultima posicion de dicha secuenciua
-         */
-	return ite;
+    int last = secImagenes.size()-1;
+	A = secImagenes[last];
+	return secImagenes.size();
 }
 
 
