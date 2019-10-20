@@ -190,6 +190,19 @@ bool igualdadRegiones(const sqPixel& sqP, const sqPixel& sqQ) {
     return resp;
 }
 
+bool igualdadImagenes(const imagen& A, const imagen& B) {
+    bool resp = true;
+    for (int i = 0; i < A.size(); ++i) {
+        for (int j = 0; j < A[0].size(); ++j) {
+            if(A[i][j] != B[i][j]) {
+                resp = false;
+            }
+        }
+    }
+
+    return resp;
+}
+
 float areaTotal(const imagen& A) {
     float areaTotal = 0;
     for (int i = 0; i < A.size(); ++i) {
@@ -216,5 +229,23 @@ imagen interseccion(imagen A, imagen B) {
     }
 
     return response;
+}
+
+imagen generarImagen(pixel semilla, imagen A) {
+    imagen imagenVacia = {
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    };
+    imagenVacia[semilla[0]][semilla[1]] = 1;
+
+    return imagenVacia;
 }
 // END EJERCICIO 6

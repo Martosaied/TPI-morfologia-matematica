@@ -23,6 +23,8 @@ float areaTotal(const imagen &A);
 bool igualdadRegiones(const sqPixel& sqP, const sqPixel& sqQ);
 
 imagen interseccion(imagen A, imagen B);
+imagen generarImagen(pixel semilla, imagen A);
+bool igualdadImagenes(const imagen& A, const imagen& B);
 
 
 

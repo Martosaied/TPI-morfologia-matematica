@@ -70,10 +70,11 @@ void cerrarForma(imagen &A, const imagen &B){
 int obtenerRegionConectada(imagen &A, const pixel &semilla) {
 	int ite = 0;
 	vector<imagen> secImagenes = {};
-    secImagenes.push_back(A);
-    secImagenes.push_back(A);
+	imagen imagenSemilla = generarImagen(semilla, A);
+    secImagenes.push_back(imagenSemilla);
+    secImagenes.push_back(imagenSemilla);
 	int i = 0;
-	while (i == 0 || !igualdadRegiones(secImagenes[i], secImagenes[i+1])) {
+	while (i == 0 || !igualdadImagenes(secImagenes[i], secImagenes[i+1])) {
 	    imagen dilatada = dilatacion(secImagenes[i], {{1,1,1},{1,1,1},{1,1,1}});
 	    imagen intersecada = interseccion(dilatada, A);
 	    secImagenes.push_back(intersecada);
@@ -81,7 +82,7 @@ int obtenerRegionConectada(imagen &A, const pixel &semilla) {
 	}
 
 	A = secImagenes[i-1];
-	return i--;
+	return i-2;
         /*
          * psuedocodigo
          * Primero tomamos la imagen y dilato solo en el punto de la semilla
