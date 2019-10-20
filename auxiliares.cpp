@@ -6,22 +6,28 @@
 using namespace std;
 
 // EJERCICIO 1
-bool esMatrizBinaria(const imagen& img) {
-	bool resp = true;
-	for (int i = 0; i < img.size(); i++) {
+bool esMatriz(const imagen &img) {
+    bool response = true;
+    for (int i = 0; i < img.size(); i++) {
         if(img[i].size() != img[0].size()) {
-            resp = false;
+            response = false;
         }
+    }
 
+    return response;
+}
+
+bool esBinaria(const imagen &img) {
+    bool response = true;
+    for (int i = 0; i < img.size(); i++) {
         for (int j = 0; j < img[0].size(); j++) {
-			if(img[i][j] != 0 && img[i][j] != 1) {
-				resp = false;
-			}
-		}
-		
-	}
+            if(img[i][j] != 0 && img[i][j] != 1) {
+                response = false;
+            }
+        }
+    }
 
-	return resp;
+    return response;
 }
 //END EJERCICIO 1
 
@@ -33,10 +39,11 @@ sqPixel obtenerRegionDelPixel(const imagen &A, const pixel &p, const int &k) {
     while (previousSize != pixelesAdy.size()) {
         previousSize = pixelesAdy.size();
         sqPixel nuevosPixelesAdy = {};
-        for (pixel m : pixelesAdy) {
+        for (const pixel& m : pixelesAdy) {
             sqPixel nuevosPixelesAdyAux = obtenerPixelesAdy(A, m, k);
             nuevosPixelesAdy.insert(nuevosPixelesAdy.end(), nuevosPixelesAdyAux.begin(), nuevosPixelesAdyAux.end());
         }
+
         pixelesAdy.insert(pixelesAdy.end(), nuevosPixelesAdy.begin(), nuevosPixelesAdy.end());
         pixelesAdy = deleteDuplicates(pixelesAdy);
     }
@@ -45,27 +52,47 @@ sqPixel obtenerRegionDelPixel(const imagen &A, const pixel &p, const int &k) {
 }
 
 vector<vector<int>> obtenerPixelesAdy(const imagen &A, const pixel &p, const int &k) {
-    sqPixel ady = {};
+    sqPixel adyacentes = {};
     if(k == 4) {
-        for (int i = -1; i <= 1; ++i) {
-            if(enRango(p, A, i, 0) && A[p[0] + i][p[1]] == 1) {
-                ady.push_back({p[0] + i, p[1]});
-            }
-            if(enRango(p, A, 0, i) && A[p[0]][p[1]+i] == 1) {
-                ady.push_back({p[0], p[1] + i});
-            }
-        }
+        adyacentes = obtenerPixelesAdy4(A, p);
     } else if(k == 8) {
-        for (int i = -1; i <= 1; ++i) {
-            for (int j = -1; j <= 1; ++j) {
-                if(enRango(p, A, i, j) && A[p[0] + i][p[1] + j] == 1) {
-                    ady.push_back({p[0] + i, p[1] + j});
-                }
+        adyacentes = obtenerPixelesAdy8(A, p);
+    }
+
+    return adyacentes;
+}
+
+sqPixel obtenerPixelesAdy4(const imagen &A, const pixel &p) {
+    sqPixel adyacentes = {};
+
+    if(enRango(p, A, 1, 0) && A[p[0] + 1][p[1]] == 1) {
+        adyacentes.push_back({p[0] + 1, p[1]});
+    }
+    if(enRango(p, A, -1, 0) && A[p[0] - 1][p[1]] == 1) {
+        adyacentes.push_back({p[0] - 1, p[1]});
+    }
+    if(enRango(p, A, 0, 1) && A[p[0]][p[1] + 1] == 1) {
+        adyacentes.push_back({p[0], p[1] + 1});
+    }
+    if(enRango(p, A, 0, -1) && A[p[0]][p[1] - 1] == 1) {
+        adyacentes.push_back({p[0], p[1] - 1});
+    }
+
+    return adyacentes;
+}
+
+sqPixel obtenerPixelesAdy8(const imagen &A, const pixel &p) {
+    sqPixel adyacentes = {};
+
+    for (int i = -1; i <= 1; ++i) {
+        for (int j = -1; j <= 1; ++j) {
+            if(enRango(p, A, i, j) && A[p[0] + i][p[1] + j] == 1 && (i != 0 || j != 0)) {
+                adyacentes.push_back({p[0] + i, p[1] + j});
             }
         }
     }
 
-    return ady;
+    return adyacentes;
 }
 
 bool enRango(const pixel &p, const imagen &A, int modificadorX, int modificadorY) {

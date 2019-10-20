@@ -7,9 +7,16 @@
 
 #include "definiciones.h"
 
-bool esMatrizBinaria(const imagen &A);
+//EJERCICIO 1
+bool esMatriz(const imagen &img);
+bool esBinaria(const imagen &img);
+
+//EJERCICIO 2
 sqPixel obtenerRegionDelPixel(const imagen &A, const pixel &p, const int &k);
-vector<vector<int>> obtenerPixelesAdy(const imagen &A, const pixel &p, const int &k);
+sqPixel obtenerPixelesAdy(const imagen &A, const pixel &p, const int &k);
+sqPixel obtenerPixelesAdy4(const imagen &A, const pixel &p);
+sqPixel obtenerPixelesAdy8(const imagen &A, const pixel &p);
+
 bool enRango(const pixel &p, const imagen &A, int i, int j);
 sqPixel deleteDuplicates(const sqPixel &secP);
 vector<sqPixel> deleteDuplicatesRegions(const vector<sqPixel> &secP);
@@ -26,7 +33,7 @@ imagen interseccion(imagen A, imagen B);
 imagen generarImagen(pixel semilla, imagen A);
 bool igualdadImagenes(const imagen& A, const imagen& B);
 vector<imagen> deleteDuplicatesImages(vector<imagen> secImagenes);
-bool proximaIteIgual(imagen B, imagen A);1
+bool proximaIteIgual(imagen B, imagen A);
 
 
 #endif //SOLUCION_AUXILIARES_H

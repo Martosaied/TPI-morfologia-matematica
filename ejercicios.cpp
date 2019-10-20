@@ -5,11 +5,11 @@
 // Ejercicio 1
 
 bool esImagenValida(const imagen& img) {
-	bool resp = false;
-	if(!img.empty() && !img[0].empty() && esMatrizBinaria(img)) {
-		resp = true;
+	bool response = false;
+	if(!img.empty() && !img[0].empty() && esMatriz(img) && esBinaria(img)) {
+        response = true;
 	}
-    return resp;
+    return response;
 }
 
 // Ejercicio 2
@@ -19,15 +19,15 @@ bool sonPixelesConectados(const imagen& img, const pixel& p, const pixel& q, int
         return true;
     }
 
+    bool response = false;
     sqPixel regionDelPixel = obtenerRegionDelPixel(img, p, k);
-
-    for (pixel r : regionDelPixel) {
+    for (const pixel& r : regionDelPixel) {
         if(r == q) {
-            return true;
+            response = true;
         }
     }
 
-    return false;
+    return response;
 }
 
 // Ejercicio 3
@@ -51,8 +51,16 @@ float devolverPromedioAreas(const imagen &A, int k) {
 // Ejercicio 4
 
 sqPixel calcularContorno(const imagen &A, int k){
-    sqPixel edges = {{}};
-	// TODO --> cuerpo de funcion
+    sqPixel edges = {};
+    for (int i = 0; i < A.size(); ++i) {
+        for (int j = 0; j < A[0].size(); ++j) {
+            pixel p = {i,j};
+            sqPixel adyActivados = obtenerPixelesAdy(A,p,k);
+            if(!adyActivados.empty() && adyActivados.size() < k && A[i][j] == 1) {
+                edges.push_back(p);
+            }
+        }
+    }
     return edges;
 }
 
