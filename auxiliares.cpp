@@ -2,6 +2,8 @@
 //
 #include "definiciones.h"
 #include "auxiliares.h"
+#include <algorithm>
+
 
 using namespace std;
 
@@ -101,3 +103,50 @@ sqPixel deleteDuplicates(const sqPixel &secP) {
     return newSecP;
 }
 // END EJERCICIO 2
+
+// EJERCICIO 4
+sqPixel calcularRegiones(const imagen &A)
+{
+    sqPixel regiones {{}};
+
+    for (int i = 0; i < A.size(); ++i) //columnas
+    {
+        for (int j = 0; j < A[i].size(); ++j) //filas
+        {
+            if (A[i][j] == 1)
+            {
+                regiones.push_back({A[i][j]});
+            }
+        }
+    }
+    sort(regiones.begin(), regiones.end());
+    return regiones;
+}
+
+sqPixel obtenerPixelesAdyInactivos(const imagen &A, const pixel &p, const int &k) {
+    sqPixel ady = {};
+    if(k == 4) {
+        for (int i = -1; i <= 1; ++i) {
+            if(enRango(p, A, i, 0) && A[p[0] + i][p[1]] == 0) {
+                ady.push_back({p[0] + i, p[1]});
+            }
+            if(enRango(p, A, 0, i) && A[p[0]][p[1]+i] == 0) {
+                ady.push_back({p[0], p[1] + i});
+            }
+        }
+    } else if(k == 8) {
+        for (int i = -1; i <= 1; ++i) {
+            for (int j = -1; j <= 1; ++j) {
+                if(enRango(p, A, i, j) && A[p[0] + i][p[1] + j] == 0) {
+                    ady.push_back({p[0] + i, p[1] + j});
+                }
+            }
+        }
+    }
+
+    return ady;
+}
+
+
+
+//END EJERCICIO 4

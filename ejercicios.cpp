@@ -30,7 +30,11 @@ float devolverPromedioAreas(const imagen &A, int k){
 
 sqPixel calcularContorno(const imagen &A, int k){
     sqPixel edges = {{}};
-	// TODO --> cuerpo de funcion
+    sqPixel regiones = calcularRegiones(A);
+    for (pixel p : regiones)
+    {
+        edges = obtenerPixelesAdyInactivos(A, p, k);
+    }
     return edges;
 }
 
