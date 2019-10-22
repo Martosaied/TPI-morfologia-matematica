@@ -3,6 +3,7 @@
 #include "definiciones.h"
 #include "auxiliares.h"
 #include <algorithm>
+#include <vector>
 
 
 using namespace std;
@@ -105,9 +106,10 @@ sqPixel deleteDuplicates(const sqPixel &secP) {
 // END EJERCICIO 2
 
 // EJERCICIO 4
-sqPixel calcularRegiones(const imagen &A)
+sqPixel calcularRegiones(imagen A)
 {
-    sqPixel regiones {{}};
+    sqPixel regiones {};
+    pixel px = {};
 
     for (int i = 0; i < A.size(); ++i) //columnas
     {
@@ -115,36 +117,56 @@ sqPixel calcularRegiones(const imagen &A)
         {
             if (A[i][j] == 1)
             {
-                regiones.push_back({A[i][j]});
+                px = {i,j};
+               regiones.push_back(px);
             }
         }
     }
-    sort(regiones.begin(), regiones.end());
     return regiones;
 }
 
-sqPixel obtenerPixelesAdyInactivos(const imagen &A, const pixel &p, const int &k) {
-    sqPixel ady = {};
-    if(k == 4) {
-        for (int i = -1; i <= 1; ++i) {
-            if(enRango(p, A, i, 0) && A[p[0] + i][p[1]] == 0) {
-                ady.push_back({p[0] + i, p[1]});
+bool noEsContorno(const imagen &vector, pixel vector1, int k) {
+    bool res = false;
+    sqPixel vAux = obtenerPixelesAdy(vector, vector1, k);
+    if ((k==4 && vAux.size() > 4) || (k==8 && vAux.size()>8))
+    {
+        res = true;
+    }
+    return  res;
+}
+
+sqPixel bordes(const imagen &A) {
+    sqPixel bordes = {};
+    pixel auxPixel;
+    for (int i = 0; i < A.size(); ++i)
+    {
+        for (int j = 0; j < A[i].size(); ++j)
+        {
+            if(i==0 && j < A[0].size())
+            {
+                auxPixel = {0,j};
+                bordes.push_back(auxPixel);
             }
-            if(enRango(p, A, 0, i) && A[p[0]][p[1]+i] == 0) {
-                ady.push_back({p[0], p[1] + i});
+            else if(i < A.size() && j == 0)
+            {
+                auxPixel = {i,0};
+                bordes.push_back(auxPixel);
+            }
+            else if (i == A.size()-1 && j < A[i].size())
+            {
+                auxPixel = {i,j};
+                bordes.push_back(auxPixel);
+            }
+            else if (i < A.size() && j == A[i].size()-1)
+            {
+                auxPixel = {i,j};
+                bordes.push_back(auxPixel);
             }
         }
-    } else if(k == 8) {
-        for (int i = -1; i <= 1; ++i) {
-            for (int j = -1; j <= 1; ++j) {
-                if(enRango(p, A, i, j) && A[p[0] + i][p[1] + j] == 0) {
-                    ady.push_back({p[0] + i, p[1] + j});
-                }
-            }
-        }
+
     }
 
-    return ady;
+    return bordes;
 }
 
 
