@@ -200,22 +200,6 @@ vector<sqPixel> deleteDuplicatesRegions(const vector<sqPixel> &secP) {
     return newSecP;
 }
 
-vector<imagen> deleteDuplicatesImages(vector<imagen> secImagenes) {
-    vector<imagen> sinDuplicados = {};
-    for (const imagen& A : secImagenes) {
-        bool add = true;
-        for (const imagen& B : sinDuplicados) {
-            if(igualdadImagenes(A,B)) {
-                add = false;
-            }
-        }
-        if(add) {
-            sinDuplicados.push_back(A);
-        }
-    }
-
-    return sinDuplicados;
-}
 bool igualdadRegiones(const sqPixel& sqP, const sqPixel& sqQ) {
     bool resp = true;
     for (const pixel& p : sqP) {

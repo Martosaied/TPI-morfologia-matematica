@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - /home/msaied/Documents/TPI-morfologia-matematica/auxiliares.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../../index.html">top level</a> - <a href="index.html">home/msaied/Documents/TPI-morfologia-matematica</a> - auxiliares.cpp<span style="font-size: 80%;"> (source / <a href="auxiliares.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">155</td>
+            <td class="headerCovTableEntry">155</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2019-10-28 11:01:40</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">19</td>
+            <td class="headerCovTableEntry">19</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr><td><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : //</a>
+<span class="lineNum">       2 </span>            : //
+<span class="lineNum">       3 </span>            : #include &quot;definiciones.h&quot;
+<span class="lineNum">       4 </span>            : #include &quot;auxiliares.h&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : using namespace std;
+<a name="7"><span class="lineNum">       7 </span>            : </a>
+<span class="lineNum">       8 </span>            : // EJERCICIO 1
+<span class="lineNum">       9 </span><span class="lineCov">         12 : bool esMatriz(const imagen &amp;img) {</span>
+<span class="lineNum">      10 </span><span class="lineCov">         12 :     bool response = true;</span>
+<span class="lineNum">      11 </span><span class="lineCov">         48 :     for (int i = 0; i &lt; img.size(); i++) {</span>
+<span class="lineNum">      12 </span><span class="lineCov">         36 :         if(img[i].size() != img[0].size()) {</span>
+<span class="lineNum">      13 </span><span class="lineCov">          3 :             response = false;</span>
+<span class="lineNum">      14 </span>            :         }
+<span class="lineNum">      15 </span>            :     }
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span><span class="lineCov">         12 :     return response;</span>
+<a name="18"><span class="lineNum">      18 </span>            : }</a>
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span><span class="lineCov">          9 : bool esBinaria(const imagen &amp;img) {</span>
+<span class="lineNum">      21 </span><span class="lineCov">          9 :     bool response = true;</span>
+<span class="lineNum">      22 </span><span class="lineCov">         39 :     for (int i = 0; i &lt; img.size(); i++) {</span>
+<span class="lineNum">      23 </span><span class="lineCov">        114 :         for (int j = 0; j &lt; img[0].size(); j++) {</span>
+<span class="lineNum">      24 </span><span class="lineCov">         84 :             if(img[i][j] != 0 &amp;&amp; img[i][j] != 1) {</span>
+<span class="lineNum">      25 </span><span class="lineCov">          3 :                 response = false;</span>
+<span class="lineNum">      26 </span>            :             }
+<span class="lineNum">      27 </span>            :         }
+<span class="lineNum">      28 </span>            :     }
+<span class="lineNum">      29 </span>            : 
+<span class="lineNum">      30 </span><span class="lineCov">          9 :     return response;</span>
+<span class="lineNum">      31 </span>            : }
+<span class="lineNum">      32 </span>            : //END EJERCICIO 1
+<a name="33"><span class="lineNum">      33 </span>            : </a>
+<span class="lineNum">      34 </span>            : // EJERCICIO 2
+<span class="lineNum">      35 </span><span class="lineCov">        234 : sqPixel obtenerRegionDelPixel(const imagen &amp;A, const pixel &amp;p, const int &amp;k) {</span>
+<span class="lineNum">      36 </span><span class="lineCov">        234 :     sqPixel pixelesAdy = {p};</span>
+<span class="lineNum">      37 </span>            : 
+<span class="lineNum">      38 </span><span class="lineCov">        234 :     int previousSize = 0;</span>
+<span class="lineNum">      39 </span><span class="lineCov">       1410 :     while (previousSize != pixelesAdy.size()) {</span>
+<span class="lineNum">      40 </span><span class="lineCov">        588 :         previousSize = pixelesAdy.size();</span>
+<span class="lineNum">      41 </span><span class="lineCov">       1176 :         sqPixel nuevosPixelesAdy = {};</span>
+<span class="lineNum">      42 </span><span class="lineCov">       2637 :         for (const pixel&amp; m : pixelesAdy) {</span>
+<span class="lineNum">      43 </span><span class="lineCov">       4098 :             sqPixel nuevosPixelesAdyAux = obtenerPixelesAdy(A, m, k);</span>
+<span class="lineNum">      44 </span><span class="lineCov">       2049 :             nuevosPixelesAdy.insert(nuevosPixelesAdy.end(), nuevosPixelesAdyAux.begin(), nuevosPixelesAdyAux.end());</span>
+<span class="lineNum">      45 </span>            :         }
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span><span class="lineCov">        588 :         pixelesAdy.insert(pixelesAdy.end(), nuevosPixelesAdy.begin(), nuevosPixelesAdy.end());</span>
+<span class="lineNum">      48 </span><span class="lineCov">        588 :         pixelesAdy = deleteDuplicates(pixelesAdy);</span>
+<span class="lineNum">      49 </span>            :     }
+<span class="lineNum">      50 </span>            : 
+<span class="lineNum">      51 </span><span class="lineCov">        234 :     return pixelesAdy;</span>
+<a name="52"><span class="lineNum">      52 </span>            : }</a>
+<span class="lineNum">      53 </span>            : 
+<span class="lineNum">      54 </span><span class="lineCov">       2361 : vector&lt;vector&lt;int&gt;&gt; obtenerPixelesAdy(const imagen &amp;A, const pixel &amp;p, const int &amp;k) {</span>
+<span class="lineNum">      55 </span><span class="lineCov">       2361 :     sqPixel adyacentes = {};</span>
+<span class="lineNum">      56 </span><span class="lineCov">       2361 :     if(k == 4) {</span>
+<span class="lineNum">      57 </span><span class="lineCov">       1857 :         adyacentes = obtenerPixelesAdy4(A, p);</span>
+<span class="lineNum">      58 </span><span class="lineCov">        504 :     } else if(k == 8) {</span>
+<span class="lineNum">      59 </span><span class="lineCov">        504 :         adyacentes = obtenerPixelesAdy8(A, p);</span>
+<span class="lineNum">      60 </span>            :     }
+<span class="lineNum">      61 </span>            : 
+<span class="lineNum">      62 </span><span class="lineCov">       2361 :     return adyacentes;</span>
+<a name="63"><span class="lineNum">      63 </span>            : }</a>
+<span class="lineNum">      64 </span>            : 
+<span class="lineNum">      65 </span><span class="lineCov">       1857 : sqPixel obtenerPixelesAdy4(const imagen &amp;A, const pixel &amp;p) {</span>
+<span class="lineNum">      66 </span><span class="lineCov">       1857 :     sqPixel adyacentes = {};</span>
+<span class="lineNum">      67 </span>            : 
+<span class="lineNum">      68 </span><span class="lineCov">       1857 :     if(enRango(p, A, 1, 0) &amp;&amp; A[p[0] + 1][p[1]] == 1) {</span>
+<span class="lineNum">      69 </span><span class="lineCov">       1050 :         adyacentes.push_back({p[0] + 1, p[1]});</span>
+<span class="lineNum">      70 </span>            :     }
+<span class="lineNum">      71 </span><span class="lineCov">       1857 :     if(enRango(p, A, -1, 0) &amp;&amp; A[p[0] - 1][p[1]] == 1) {</span>
+<span class="lineNum">      72 </span><span class="lineCov">       1020 :         adyacentes.push_back({p[0] - 1, p[1]});</span>
+<span class="lineNum">      73 </span>            :     }
+<span class="lineNum">      74 </span><span class="lineCov">       1857 :     if(enRango(p, A, 0, 1) &amp;&amp; A[p[0]][p[1] + 1] == 1) {</span>
+<span class="lineNum">      75 </span><span class="lineCov">        876 :         adyacentes.push_back({p[0], p[1] + 1});</span>
+<span class="lineNum">      76 </span>            :     }
+<span class="lineNum">      77 </span><span class="lineCov">       1857 :     if(enRango(p, A, 0, -1) &amp;&amp; A[p[0]][p[1] - 1] == 1) {</span>
+<span class="lineNum">      78 </span><span class="lineCov">        849 :         adyacentes.push_back({p[0], p[1] - 1});</span>
+<span class="lineNum">      79 </span>            :     }
+<span class="lineNum">      80 </span>            : 
+<span class="lineNum">      81 </span><span class="lineCov">       1857 :     return adyacentes;</span>
+<a name="82"><span class="lineNum">      82 </span>            : }</a>
+<span class="lineNum">      83 </span>            : 
+<span class="lineNum">      84 </span><span class="lineCov">        504 : sqPixel obtenerPixelesAdy8(const imagen &amp;A, const pixel &amp;p) {</span>
+<span class="lineNum">      85 </span><span class="lineCov">        504 :     sqPixel adyacentes = {};</span>
+<span class="lineNum">      86 </span>            : 
+<span class="lineNum">      87 </span><span class="lineCov">       2016 :     for (int i = -1; i &lt;= 1; ++i) {</span>
+<span class="lineNum">      88 </span><span class="lineCov">       6048 :         for (int j = -1; j &lt;= 1; ++j) {</span>
+<span class="lineNum">      89 </span><span class="lineCov">       4536 :             if(enRango(p, A, i, j) &amp;&amp; A[p[0] + i][p[1] + j] == 1 &amp;&amp; (i != 0 || j != 0)) {</span>
+<span class="lineNum">      90 </span><span class="lineCov">       1047 :                 adyacentes.push_back({p[0] + i, p[1] + j});</span>
+<span class="lineNum">      91 </span>            :             }
+<span class="lineNum">      92 </span>            :         }
+<span class="lineNum">      93 </span>            :     }
+<span class="lineNum">      94 </span>            : 
+<span class="lineNum">      95 </span><span class="lineCov">        504 :     return adyacentes;</span>
+<a name="96"><span class="lineNum">      96 </span>            : }</a>
+<span class="lineNum">      97 </span>            : 
+<span class="lineNum">      98 </span><span class="lineCov">     135384 : bool enRango(const pixel &amp;p, const imagen &amp;A, int modificadorX, int modificadorY) {</span>
+<span class="lineNum">      99 </span><span class="lineCov">     135384 :     int x = p[0] + modificadorX;</span>
+<span class="lineNum">     100 </span><span class="lineCov">     135384 :     int y = p[1] + modificadorY;</span>
+<span class="lineNum">     101 </span><span class="lineCov">     135384 :     return (x &gt;= 0 &amp;&amp; x &lt; A.size() &amp;&amp; y &gt;= 0 &amp;&amp; y &lt; A[0].size());</span>
+<a name="102"><span class="lineNum">     102 </span>            : }</a>
+<span class="lineNum">     103 </span>            : 
+<span class="lineNum">     104 </span><span class="lineCov">        588 : sqPixel deleteDuplicates(const sqPixel &amp;secP) {</span>
+<span class="lineNum">     105 </span><span class="lineCov">        588 :     sqPixel newSecP = {};</span>
+<span class="lineNum">     106 </span><span class="lineCov">       6651 :     for (const pixel&amp; p : secP) {</span>
+<span class="lineNum">     107 </span><span class="lineCov">       6063 :         bool add = true;</span>
+<span class="lineNum">     108 </span><span class="lineCov">      46899 :         for (const pixel&amp; q : newSecP) {</span>
+<span class="lineNum">     109 </span><span class="lineCov">      40836 :             if(q == p) {</span>
+<span class="lineNum">     110 </span><span class="lineCov">       3483 :                 add = false;</span>
+<span class="lineNum">     111 </span>            :             }
+<span class="lineNum">     112 </span>            :         }
+<span class="lineNum">     113 </span>            : 
+<span class="lineNum">     114 </span><span class="lineCov">       6063 :         if(add) {</span>
+<span class="lineNum">     115 </span><span class="lineCov">       2580 :             newSecP.push_back(p);</span>
+<span class="lineNum">     116 </span>            :         }
+<span class="lineNum">     117 </span>            :     }
+<span class="lineNum">     118 </span><span class="lineCov">        588 :     return newSecP;</span>
+<span class="lineNum">     119 </span>            : }
+<span class="lineNum">     120 </span>            : // END EJERCICIO 2
+<span class="lineNum">     121 </span>            : 
+<a name="122"><span class="lineNum">     122 </span>            : </a>
+<span class="lineNum">     123 </span>            : // EJERCICIO 5
+<span class="lineNum">     124 </span><span class="lineCov">          6 : imagen erosion(const imagen &amp;A, const imagen &amp;EE) {</span>
+<span class="lineNum">     125 </span><span class="lineCov">          6 :     int rangoEE = ((int)EE.size() - 1) / 2;</span>
+<span class="lineNum">     126 </span><span class="lineCov">          6 :     imagen response = A;</span>
+<span class="lineNum">     127 </span><span class="lineCov">         48 :     for (int i = 0; i &lt; A.size(); ++i) {</span>
+<span class="lineNum">     128 </span><span class="lineCov">        294 :         for (int j = 0; j &lt; A[0].size(); ++j) {</span>
+<span class="lineNum">     129 </span><span class="lineCov">        504 :             pixel p = {i,j};</span>
+<span class="lineNum">     130 </span><span class="lineCov">        252 :             if(elementoEstructuranteEstaEnRegion(rangoEE, A, p, EE)) {</span>
+<span class="lineNum">     131 </span><span class="lineCov">        162 :                 response[i][j] = 1;</span>
+<span class="lineNum">     132 </span>            :             } else {
+<span class="lineNum">     133 </span><span class="lineCov">         90 :                 response[i][j] = 0;</span>
+<span class="lineNum">     134 </span>            :             }
+<span class="lineNum">     135 </span>            :         }
+<span class="lineNum">     136 </span>            :     }
+<span class="lineNum">     137 </span>            : 
+<span class="lineNum">     138 </span><span class="lineCov">          6 :     return response;</span>
+<a name="139"><span class="lineNum">     139 </span>            : }</a>
+<span class="lineNum">     140 </span>            : 
+<span class="lineNum">     141 </span><span class="lineCov">         78 : imagen dilatacion(const imagen &amp;A, const imagen &amp;EE) {</span>
+<span class="lineNum">     142 </span><span class="lineCov">         78 :     int rangoEE = ((int)EE.size() - 1) / 2;</span>
+<span class="lineNum">     143 </span><span class="lineCov">         78 :     imagen response = A;</span>
+<span class="lineNum">     144 </span><span class="lineCov">        822 :     for (int i = 0; i &lt; A.size(); ++i) {</span>
+<span class="lineNum">     145 </span><span class="lineCov">       7848 :         for (int j = 0; j &lt; A[0].size(); ++j) {</span>
+<span class="lineNum">     146 </span><span class="lineCov">      14208 :             pixel p = {i,j};</span>
+<span class="lineNum">     147 </span><span class="lineCov">       7104 :             if(elementoEstructuranteTocaRegion(rangoEE, A, p, EE)) {</span>
+<span class="lineNum">     148 </span><span class="lineCov">       2646 :                 response[i][j] = 1;</span>
+<span class="lineNum">     149 </span>            :             } else {
+<span class="lineNum">     150 </span><span class="lineCov">       4458 :                 response[i][j] = 0;</span>
+<span class="lineNum">     151 </span>            :             }
+<span class="lineNum">     152 </span>            :         }
+<span class="lineNum">     153 </span>            :     }
+<span class="lineNum">     154 </span>            : 
+<span class="lineNum">     155 </span><span class="lineCov">         78 :     return response;</span>
+<a name="156"><span class="lineNum">     156 </span>            : }</a>
+<span class="lineNum">     157 </span>            : 
+<span class="lineNum">     158 </span><span class="lineCov">        252 : bool elementoEstructuranteEstaEnRegion(int radio, imagen A, pixel posicionActualEE, imagen EE) {</span>
+<span class="lineNum">     159 </span><span class="lineCov">        252 :     bool response = true;</span>
+<span class="lineNum">     160 </span><span class="lineCov">        252 :     int x = posicionActualEE[0];</span>
+<span class="lineNum">     161 </span><span class="lineCov">        252 :     int y = posicionActualEE[1];</span>
+<span class="lineNum">     162 </span><span class="lineCov">       1008 :     for (int i = -radio; i &lt;= radio; ++i)</span>
+<span class="lineNum">     163 </span><span class="lineCov">       3024 :         for (int j = -radio; j &lt;= radio; ++j) {</span>
+<span class="lineNum">     164 </span><span class="lineCov">       2268 :             if(enRango(posicionActualEE,A,i,j) &amp;&amp; enRango({i+radio,j+radio},A,0,0) &amp;&amp; A[x+i][y+j] != 1 &amp;&amp; EE[i+radio][j+radio] == 1) {</span>
+<span class="lineNum">     165 </span><span class="lineCov">        132 :                 response = false;</span>
+<span class="lineNum">     166 </span>            :             }
+<span class="lineNum">     167 </span>            :         }
+<span class="lineNum">     168 </span><span class="lineCov">        252 :     return response;</span>
+<a name="169"><span class="lineNum">     169 </span>            : }</a>
+<span class="lineNum">     170 </span>            : 
+<span class="lineNum">     171 </span><span class="lineCov">       7104 : bool elementoEstructuranteTocaRegion(int radio, imagen A, pixel posicionActualEE, imagen EE) {</span>
+<span class="lineNum">     172 </span><span class="lineCov">       7104 :     bool response = false;</span>
+<span class="lineNum">     173 </span><span class="lineCov">       7104 :     int x = posicionActualEE[0];</span>
+<span class="lineNum">     174 </span><span class="lineCov">       7104 :     int y = posicionActualEE[1];</span>
+<span class="lineNum">     175 </span><span class="lineCov">      28416 :     for (int i = -radio; i &lt;= radio; ++i)</span>
+<span class="lineNum">     176 </span><span class="lineCov">      85248 :         for (int j = -radio; j &lt;= radio; ++j) {</span>
+<span class="lineNum">     177 </span><span class="lineCov">      63936 :             if(enRango(posicionActualEE,A,i,j) &amp;&amp; enRango({i+radio,j+radio},A,0,0) &amp;&amp; A[x+i][y+j] == 1 &amp;&amp; EE[i+radio][j+radio] == 1) {</span>
+<span class="lineNum">     178 </span><span class="lineCov">       7353 :                 response = true;</span>
+<span class="lineNum">     179 </span>            :             }
+<span class="lineNum">     180 </span>            :         }
+<span class="lineNum">     181 </span><span class="lineCov">       7104 :     return response;</span>
+<span class="lineNum">     182 </span>            : }
+<span class="lineNum">     183 </span>            : 
+<a name="184"><span class="lineNum">     184 </span>            : // END EJERCICIO 5</a>
+<span class="lineNum">     185 </span>            : 
+<span class="lineNum">     186 </span><span class="lineCov">         54 : vector&lt;sqPixel&gt; deleteDuplicatesRegions(const vector&lt;sqPixel&gt; &amp;secP) {</span>
+<span class="lineNum">     187 </span><span class="lineCov">         54 :     vector&lt;sqPixel&gt; newSecP = {};</span>
+<span class="lineNum">     188 </span><span class="lineCov">        237 :     for (const sqPixel&amp; sqP : secP) {</span>
+<span class="lineNum">     189 </span><span class="lineCov">        183 :         bool add = true;</span>
+<span class="lineNum">     190 </span><span class="lineCov">        396 :         for (const sqPixel&amp; sqQ : newSecP) {</span>
+<span class="lineNum">     191 </span><span class="lineCov">        213 :             if(igualdadRegiones(sqP, sqQ)) {</span>
+<span class="lineNum">     192 </span><span class="lineCov">         78 :                 add = false;</span>
+<span class="lineNum">     193 </span>            :             }
+<span class="lineNum">     194 </span>            :         }
+<span class="lineNum">     195 </span>            : 
+<span class="lineNum">     196 </span><span class="lineCov">        183 :         if(add) {</span>
+<span class="lineNum">     197 </span><span class="lineCov">        105 :             newSecP.push_back(sqP);</span>
+<span class="lineNum">     198 </span>            :         }
+<span class="lineNum">     199 </span>            :     }
+<span class="lineNum">     200 </span><span class="lineCov">         54 :     return newSecP;</span>
+<a name="201"><span class="lineNum">     201 </span>            : }</a>
+<span class="lineNum">     202 </span>            : 
+<span class="lineNum">     203 </span><span class="lineCov">        213 : bool igualdadRegiones(const sqPixel&amp; sqP, const sqPixel&amp; sqQ) {</span>
+<span class="lineNum">     204 </span><span class="lineCov">        213 :     bool resp = true;</span>
+<span class="lineNum">     205 </span><span class="lineCov">        759 :     for (const pixel&amp; p : sqP) {</span>
+<span class="lineNum">     206 </span><span class="lineCov">        546 :         bool estaEnRegion = false;</span>
+<span class="lineNum">     207 </span><span class="lineCov">       3282 :         for (const pixel&amp; q : sqQ) {</span>
+<span class="lineNum">     208 </span><span class="lineCov">       2736 :             if(p == q) {</span>
+<span class="lineNum">     209 </span><span class="lineCov">        378 :                 estaEnRegion = true;</span>
+<span class="lineNum">     210 </span>            :             }
+<span class="lineNum">     211 </span>            :         }
+<span class="lineNum">     212 </span>            : 
+<span class="lineNum">     213 </span><span class="lineCov">        546 :         if(!estaEnRegion) {</span>
+<span class="lineNum">     214 </span><span class="lineCov">        168 :             resp = false;</span>
+<span class="lineNum">     215 </span>            :         }
+<span class="lineNum">     216 </span>            :     }
+<span class="lineNum">     217 </span><span class="lineCov">        213 :     return resp;</span>
+<a name="218"><span class="lineNum">     218 </span>            : }</a>
+<span class="lineNum">     219 </span>            : 
+<span class="lineNum">     220 </span><span class="lineCov">         42 : bool igualdadImagenes(const imagen&amp; A, const imagen&amp; B) {</span>
+<span class="lineNum">     221 </span><span class="lineCov">         42 :     bool resp = true;</span>
+<span class="lineNum">     222 </span><span class="lineCov">        444 :     for (int i = 0; i &lt; A.size(); ++i) {</span>
+<span class="lineNum">     223 </span><span class="lineCov">       4254 :         for (int j = 0; j &lt; A[0].size(); ++j) {</span>
+<span class="lineNum">     224 </span><span class="lineCov">       3852 :             if(A[i][j] != B[i][j]) {</span>
+<span class="lineNum">     225 </span><span class="lineCov">        138 :                 resp = false;</span>
+<span class="lineNum">     226 </span>            :             }
+<span class="lineNum">     227 </span>            :         }
+<span class="lineNum">     228 </span>            :     }
+<span class="lineNum">     229 </span>            : 
+<span class="lineNum">     230 </span><span class="lineCov">         42 :     return resp;</span>
+<a name="231"><span class="lineNum">     231 </span>            : }</a>
+<span class="lineNum">     232 </span>            : 
+<span class="lineNum">     233 </span><span class="lineCov">         54 : float areaTotal(const imagen&amp; A) {</span>
+<span class="lineNum">     234 </span><span class="lineCov">         54 :     float areaTotal = 0;</span>
+<span class="lineNum">     235 </span><span class="lineCov">        207 :     for (int i = 0; i &lt; A.size(); ++i) {</span>
+<span class="lineNum">     236 </span><span class="lineCov">        582 :         for (int j = 0; j &lt; A[0].size(); ++j) {</span>
+<span class="lineNum">     237 </span><span class="lineCov">        429 :             if(A[i][j] == 1) {</span>
+<span class="lineNum">     238 </span><span class="lineCov">        183 :                 areaTotal++;</span>
+<span class="lineNum">     239 </span>            :             }
+<span class="lineNum">     240 </span>            :         }
+<span class="lineNum">     241 </span>            :     }
+<span class="lineNum">     242 </span>            : 
+<span class="lineNum">     243 </span><span class="lineCov">         54 :     return areaTotal;</span>
+<a name="244"><span class="lineNum">     244 </span>            : }</a>
+<span class="lineNum">     245 </span>            : 
+<span class="lineNum">     246 </span><span class="lineCov">         72 : imagen interseccion(imagen A, imagen B) {</span>
+<span class="lineNum">     247 </span><span class="lineCov">         72 :     imagen response = A;</span>
+<span class="lineNum">     248 </span><span class="lineCov">        774 :     for (int i = 0; i &lt; A.size(); ++i) {</span>
+<span class="lineNum">     249 </span><span class="lineCov">       7554 :         for (int j = 0; j &lt; A[0].size(); ++j) {</span>
+<span class="lineNum">     250 </span><span class="lineCov">       6852 :             if(A[i][j] == 1 &amp;&amp; B[i][j] == 1) {</span>
+<span class="lineNum">     251 </span><span class="lineCov">       1038 :                 response[i][j] = 1;</span>
+<span class="lineNum">     252 </span>            :             } else {
+<span class="lineNum">     253 </span><span class="lineCov">       5814 :                 response[i][j] = 0;</span>
+<span class="lineNum">     254 </span>            :             }
+<span class="lineNum">     255 </span>            :         }
+<span class="lineNum">     256 </span>            :     }
+<span class="lineNum">     257 </span>            : 
+<span class="lineNum">     258 </span><span class="lineCov">         72 :     return response;</span>
+<a name="259"><span class="lineNum">     259 </span>            : }</a>
+<span class="lineNum">     260 </span>            : 
+<span class="lineNum">     261 </span><span class="lineCov">         12 : imagen generarImagen(pixel semilla, imagen A) {</span>
+<span class="lineNum">     262 </span><span class="lineCov">         12 :     imagen imagenVacia = A;</span>
+<span class="lineNum">     263 </span><span class="lineCov">        114 :     for (int i = 0; i &lt; imagenVacia.size(); ++i) {</span>
+<span class="lineNum">     264 </span><span class="lineCov">        954 :         for (int j = 0; j &lt; imagenVacia[0].size(); ++j) {</span>
+<span class="lineNum">     265 </span><span class="lineCov">        852 :             imagenVacia[i][j] = 0;</span>
+<span class="lineNum">     266 </span>            :         }
+<span class="lineNum">     267 </span>            :     }
+<span class="lineNum">     268 </span><span class="lineCov">         12 :     imagenVacia[semilla[0]][semilla[1]] = 1;</span>
+<span class="lineNum">     269 </span>            : 
+<span class="lineNum">     270 </span><span class="lineCov">         12 :     return imagenVacia;</span>
+<a name="271"><span class="lineNum">     271 </span>            : }</a>
+<span class="lineNum">     272 </span>            : 
+<span class="lineNum">     273 </span><span class="lineCov">         42 : bool proximaIteIgual(imagen B, imagen A) {</span>
+<span class="lineNum">     274 </span><span class="lineCov">         84 :     imagen dilatada = dilatacion(B, {{1,1,1},{1,1,1},{1,1,1}});</span>
+<span class="lineNum">     275 </span><span class="lineCov">         84 :     imagen intersecada = interseccion(dilatada, A);</span>
+<span class="lineNum">     276 </span>            : 
+<span class="lineNum">     277 </span><span class="lineCov">         84 :     return igualdadImagenes(B, intersecada);</span>
+<span class="lineNum">     278 </span>            : }
+<span class="lineNum">     279 </span>            : // END EJERCICIO 6
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
