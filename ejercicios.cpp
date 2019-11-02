@@ -42,7 +42,7 @@ float devolverPromedioAreas(const imagen &A, int k) {
             }
         }
     }
-	regiones = deleteDuplicatesRegions(regiones);
+	regiones = eliminarRegionesDuplicadas(regiones);
 	float area = areaTotal(A);
 
     return area != 0 ? area/regiones.size() : 0;
@@ -55,7 +55,7 @@ sqPixel calcularContorno(const imagen &A, int k){
         for (int j = 0; j < A[0].size(); ++j) {
             pixel p = {i,j};
             sqPixel adyActivados = obtenerPixelesAdy(A,p,k);
-            if(!adyActivados.empty() && adyActivados.size() < k && A[i][j] == 1) {
+            if(adyActivados.size() < k && A[i][j] == 1) {
                 edges.push_back(p);
             }
         }

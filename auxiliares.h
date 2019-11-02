@@ -18,8 +18,8 @@ sqPixel obtenerPixelesAdy4(const imagen &A, const pixel &p);
 sqPixel obtenerPixelesAdy8(const imagen &A, const pixel &p);
 
 bool enRango(const pixel &p, const imagen &A, int i, int j);
-sqPixel deleteDuplicates(const sqPixel &secP);
-vector<sqPixel> deleteDuplicatesRegions(const vector<sqPixel> &secP);
+sqPixel eliminarPixelesDuplicados(const sqPixel &secP);
+vector<sqPixel> eliminarRegionesDuplicadas(const vector<sqPixel> &secP);
 
 imagen dilatacion(const imagen &A, const imagen &EE);
 imagen erosion(const imagen &A, const imagen &EE);
@@ -32,7 +32,7 @@ bool igualdadRegiones(const sqPixel& sqP, const sqPixel& sqQ);
 imagen interseccion(imagen A, imagen B);
 imagen generarImagen(pixel semilla, imagen A);
 bool igualdadImagenes(const imagen& A, const imagen& B);
-bool proximaIteIgual(imagen B, imagen A);
+bool proximaIteIgual(const imagen& B, imagen A);
 
 
 #endif //SOLUCION_AUXILIARES_H

@@ -45,7 +45,7 @@ sqPixel obtenerRegionDelPixel(const imagen &A, const pixel &p, const int &k) {
         }
 
         pixelesAdy.insert(pixelesAdy.end(), nuevosPixelesAdy.begin(), nuevosPixelesAdy.end());
-        pixelesAdy = deleteDuplicates(pixelesAdy);
+        pixelesAdy = eliminarPixelesDuplicados(pixelesAdy);
     }
 
     return pixelesAdy;
@@ -101,7 +101,7 @@ bool enRango(const pixel &p, const imagen &A, int modificadorX, int modificadorY
     return (x >= 0 && x < A.size() && y >= 0 && y < A[0].size());
 }
 
-sqPixel deleteDuplicates(const sqPixel &secP) {
+sqPixel eliminarPixelesDuplicados(const sqPixel &secP) {
     sqPixel newSecP = {};
     for (const pixel& p : secP) {
         bool add = true;
@@ -183,7 +183,7 @@ bool elementoEstructuranteTocaRegion(int radio, imagen A, pixel posicionActualEE
 
 // END EJERCICIO 5
 
-vector<sqPixel> deleteDuplicatesRegions(const vector<sqPixel> &secP) {
+vector<sqPixel> eliminarRegionesDuplicadas(const vector<sqPixel> &secP) {
     vector<sqPixel> newSecP = {};
     for (const sqPixel& sqP : secP) {
         bool add = true;
@@ -259,21 +259,15 @@ imagen interseccion(imagen A, imagen B) {
 }
 
 imagen generarImagen(pixel semilla, imagen A) {
-    imagen imagenVacia = A;
-    for (int i = 0; i < imagenVacia.size(); ++i) {
-        for (int j = 0; j < imagenVacia[0].size(); ++j) {
-            imagenVacia[i][j] = 0;
-        }
-    }
+    vector<vector<int>>imagenVacia(A.size(),vector<int>(A[0].size(), 0));
     imagenVacia[semilla[0]][semilla[1]] = 1;
-
     return imagenVacia;
 }
 
-bool proximaIteIgual(imagen B, imagen A) {
+bool proximaIteIgual(const imagen& B, imagen A) {
     imagen dilatada = dilatacion(B, {{1,1,1},{1,1,1},{1,1,1}});
     imagen intersecada = interseccion(dilatada, A);
 
-    return igualdadImagenes(B, intersecada);
+    return igualdadImagenes(intersecada, B);
 }
 // END EJERCICIO 6

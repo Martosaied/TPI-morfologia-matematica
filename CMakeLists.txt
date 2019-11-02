@@ -26,7 +26,7 @@ set(SOURCE_FILES main.cpp ejercicios.cpp auxiliares.cpp
         tests/ej4TEST.cpp
         tests/ej5TEST.cpp
         tests/ej6TEST.cpp
-)
+        tests/ej1TEST_NUEVOS.cpp tests/ej2TEST_NUEVOS.cpp tests/ej3TEST_NUEVOS.cpp tests/ej4TEST_NUEVOS.cpp)
 
 # Dice cuál va a ser el nombre del archivo ejecutable,
 # y qué .cpp va a tener. Acá le decimos que se va a llamar solucion,
